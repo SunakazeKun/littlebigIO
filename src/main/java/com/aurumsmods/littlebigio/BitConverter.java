@@ -255,10 +255,10 @@ public final class BitConverter {
     public static void putShort(byte[] arr, int off, ByteOrder endian, short val) {
         if (Objects.requireNonNull(endian) == ByteOrder.BIG_ENDIAN) {
             arr[off++] = (byte)(val >>> 8);
-            arr[off  ] = (byte) val;
+            arr[off  ] = (byte)(val & 0xFF);
         }
         else {
-            arr[off++] = (byte) val;
+            arr[off++] = (byte)(val & 0xFF);
             arr[off  ] = (byte)(val >>> 8);
         }
     }
@@ -288,16 +288,16 @@ public final class BitConverter {
      */
     public static void putInt(byte[] arr, int off, ByteOrder endian, int val) {
         if (Objects.requireNonNull(endian) == ByteOrder.BIG_ENDIAN) {
-            arr[off++] = (byte)(val >>> 24);
-            arr[off++] = (byte)(val >>> 16) ;
-            arr[off++] = (byte)(val >>>  8);
-            arr[off  ] = (byte) val;
+            arr[off++] = (byte) (val >>> 24);
+            arr[off++] = (byte)((val >>> 16) & 0xFF);
+            arr[off++] = (byte)((val >>>  8) & 0xFF);
+            arr[off  ] = (byte) (val         & 0xFF);
         }
         else {
-            arr[off++] = (byte) val;
-            arr[off++] = (byte)(val >>>  8);
-            arr[off++] = (byte)(val >>> 16);
-            arr[off  ] = (byte)(val >>> 24);
+            arr[off++] = (byte) (val         & 0xFF);
+            arr[off++] = (byte)((val >>>  8) & 0xFF);
+            arr[off++] = (byte)((val >>> 16) & 0xFF);
+            arr[off  ] = (byte) (val >>> 24);
         }
     }
     
@@ -312,24 +312,24 @@ public final class BitConverter {
      */
     public static void putLong(byte[] arr, int off, ByteOrder endian, long val) {
         if (Objects.requireNonNull(endian) == ByteOrder.BIG_ENDIAN) {
-            arr[off++] = (byte)(val >>> 56);
-            arr[off++] = (byte)(val >>> 48);
-            arr[off++] = (byte)(val >>> 40);
-            arr[off++] = (byte)(val >>> 32);
-            arr[off++] = (byte)(val >>> 24);
-            arr[off++] = (byte)(val >>> 16);
-            arr[off++] = (byte)(val >>>  8);
-            arr[off  ] = (byte) val;
+            arr[off++] = (byte) (val >>> 56);
+            arr[off++] = (byte)((val >>> 48) & 0xFF);
+            arr[off++] = (byte)((val >>> 40) & 0xFF);
+            arr[off++] = (byte)((val >>> 32) & 0xFF);
+            arr[off++] = (byte)((val >>> 24) & 0xFF);
+            arr[off++] = (byte)((val >>> 16) & 0xFF);
+            arr[off++] = (byte)((val >>>  8) & 0xFF);
+            arr[off  ] = (byte) (val         & 0xFF);
         }
         else {
-            arr[off++] = (byte) val;
-            arr[off++] = (byte)(val >>>  8);
-            arr[off++] = (byte)(val >>> 16);
-            arr[off++] = (byte)(val >>> 24);
-            arr[off++] = (byte)(val >>> 32);
-            arr[off++] = (byte)(val >>> 40);
-            arr[off++] = (byte)(val >>> 48);
-            arr[off  ] = (byte)(val >>> 56);
+            arr[off++] = (byte) (val         & 0xFF);
+            arr[off++] = (byte)((val >>>  8) & 0xFF);
+            arr[off++] = (byte)((val >>> 16) & 0xFF);
+            arr[off++] = (byte)((val >>> 24) & 0xFF);
+            arr[off++] = (byte)((val >>> 32) & 0xFF);
+            arr[off++] = (byte)((val >>> 40) & 0xFF);
+            arr[off++] = (byte)((val >>> 48) & 0xFF);
+            arr[off  ] = (byte) (val >>> 56);
         }
     }
     
