@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2022 Aurum.
+ * Copyright 2022 AurumsMods.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,20 +23,28 @@
  */
 package com.aurumsmods.littlebigio;
 
+import java.io.DataOutput;
+import java.io.EOFException;
 import java.io.IOException;
+import java.io.InputStream;
 
 /**
- * Provides a contract for reading unsigned integers from a given input stream.
- * 
- * @author Aurum
+ * Provides a contract for reading unsigned 32-bit integers from a data source,
+ * such as an {@link InputStream}.
  */
 public interface UnsignedIntInput {
-    /**
-     * Reads and returns one unsigned {@code int} which occupies 4 bytes from the input stream.
-     * 
-     * @return the unsigned {@code int} value read.
-     * @throws IOException if an error occurs during reading.
-     * @see BitConverter#getUnsignedInt(byte[], int, java.nio.ByteOrder) 
-     */
-    long readUnsignedInt() throws IOException;
+	/**
+	 * Reads four input bytes and returns a {@code long} value in the range
+	 * {@code 0} through {@code 2147483647}.
+	 *
+	 * This method is suitable for reading the bytes written by
+	 * {@link DataOutput#writeInt} if the argument to {@code writeInt} was intended
+	 * to be a value in the range {@code 0} through {@code 2147483647}.
+	 *
+	 * @return the unsigned 32-bit value read.
+	 * @throws EOFException if this stream reaches the end before reading all the
+	 *                      bytes.
+	 * @throws IOException  if an I/O error occurs.
+	 */
+	public long readUnsignedInt() throws IOException;
 }
