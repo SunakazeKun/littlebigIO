@@ -39,7 +39,7 @@ import java.util.Objects;
  * <p>
  * This implements {@link DataOutput} but intentionally violates the
  * specifications prescribed by the contract. This is because {@code DataInput}
- * explicitly states the implementation of big-endian byte ordering.
+ * explicitly states the implementation of big endian byte ordering.
  * <p>
  * {@code BinaryOutputStream} is not necessarily thread-safe due to it using a
  * buffer to write multiple bytes at once.
@@ -116,12 +116,42 @@ public class BinaryOutputStream extends FilterOutputStream implements DataOutput
 
 	/**
 	 * Returns the number of bytes written to this stream so far. If the value
-	 * overflows, it will be capped at Integer.MAX_VALUE.
+	 * overflows, it will be capped at {@code Integer.MAX_VALUE}.
 	 *
 	 * @return the number of bytes written to this stream so far.
 	 */
 	public final int size() {
 		return written;
+	}
+
+	/**
+	 * Writes the specified {@code byte} to this output stream. This is done by
+	 * calling the {@code write} method of its underlying output stream with the
+	 * same argument.
+	 *
+	 * @param b the {@code byte}.
+	 * @throws IOException if an I/O error occurs.
+	 */
+	@Override
+	public void write(int b) throws IOException {
+		out.write(b);
+		incWritten(1);
+	}
+
+	/**
+	 * Writes {@code len} bytes from the specified {@code byte} array starting at
+	 * offset {@code off} to this output stream. This is done by calling the
+	 * {@code write} method of its underlying output stream with the same arguments.
+	 *
+	 * @param b   the data.
+	 * @param off the start offset in the data.
+	 * @param len the number of bytes to write.
+	 * @throws IOException if an I/O error occurs.
+	 */
+	@Override
+	public void write(byte[] b, int off, int len) throws IOException {
+		out.write(b, off, len);
+		incWritten(len);
 	}
 
 	/**
