@@ -310,8 +310,6 @@ public class BinaryOutputStream extends FilterOutputStream implements DataOutput
 		for (int i = 0; i < len; i++) {
 			writeChar(chars[i]);
 		}
-
-		incWritten(len * 2);
 	}
 
 	/**
