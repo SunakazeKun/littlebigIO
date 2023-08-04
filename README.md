@@ -9,7 +9,7 @@ The library's most important classes are:
 Essentially, ``BinaryInputStream`` and ``BinaryOutputStream`` can be used like Java's ``DataInputStream`` and ``DataOutputStream``, respectively.
 
 ## Documentation
-All javadocs for this library can be found [on my website](https://aurumsmods.com/javadocs/littlebigIO/com/aurumsmods/littlebigio/package-summary.html).
+All javadocs for this library can be found [on my website](https://aurumsmods.com/docs/littlebigIO/com/aurumsmods/littlebigio/package-summary.html).
 
 ## Example
 This should help you get a basic idea of how to use the features of this library. Below is some example code showing how to read and write ``int`` array files. A byte order mark, or BOM for short, is written at the file's start, allowing us to detect the correct byte order while reading from the file.
